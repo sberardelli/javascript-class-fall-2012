@@ -17,7 +17,7 @@ describe('Calculator view', function() {
 	var calculatorView = new CalculatorView();
 	calculatorView.init('.calculator');
 	container.find('button').click();
-	var displayText = container.find('.display').text();
+	var displayText = container.find('.display').val();
 	expect(displayText).toBe('1');
     });
 });
