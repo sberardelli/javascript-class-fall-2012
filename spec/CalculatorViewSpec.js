@@ -1,5 +1,5 @@
 describe('Calculator view', function() {
-    var container;
+    var container, calculatorView;
     beforeEach(function() {
 	container = $('<div/>');
 	container.addClass('calculator');
@@ -9,6 +9,9 @@ describe('Calculator view', function() {
 	container.append($("<button id='btn1'>1</button>"));
 	container.append($("<button id='btn2'>2</button>"));
 	container.append($("<button id='btnperiod'>.</button>"));
+
+	var calculatorView = new CalculatorView();
+	calculatorView.init('.calculator');
     });
 
     afterEach(function() {
@@ -16,24 +19,18 @@ describe('Calculator view', function() {
     });
 
     it('adds to the display when buttons are pressed', function() {
-	var calculatorView = new CalculatorView();
-	calculatorView.init('.calculator');
 	container.find('#btn1').click();
 	var displayText = container.find('.display').val();
 	expect(displayText).toBe('1');
     });
 
     it('adds the correct value to the display', function() {
-	var calculatorView = new CalculatorView();
-	calculatorView.init('.calculator');
 	container.find('#btn2').click();
 	var displayText = container.find('.display').val();
 	expect(displayText).toBe('2');
     });
 
     it('appends the value to the display', function() {
-	var calculatorView = new CalculatorView();
-	calculatorView.init('.calculator');
 	container.find('#btn2').click();
 	container.find('#btn1').click();
 	var displayText = container.find('.display').val();
@@ -41,8 +38,6 @@ describe('Calculator view', function() {
     });
 
     it('appends the value to the display', function() {
-	var calculatorView = new CalculatorView();
-	calculatorView.init('.calculator');
 	container.find('#btn2').click();
 	container.find('#btnperiod').click();
 	container.find('#btn1').click();
