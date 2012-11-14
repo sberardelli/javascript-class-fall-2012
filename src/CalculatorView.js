@@ -7,7 +7,11 @@ CalculatorView.prototype.init = function(c) {
     wrapper.find('button').click(function(ev) {
 	var buttonText = $(ev.currentTarget).text();
 	var oldValue = display.val();
-	display.val(oldValue + buttonText);
+	if (oldValue.indexOf('.') === -1) {
+	    display.val(oldValue + buttonText);
+	} else if (buttonText !== '.') {
+	    display.val(oldValue + buttonText);
+	}
     });
 };
 
