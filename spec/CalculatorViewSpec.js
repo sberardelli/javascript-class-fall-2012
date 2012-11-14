@@ -6,6 +6,7 @@ describe('Calculator view', function() {
 	container.appendTo(document.body);
 
 	container.append($("<div class='display'></div>"));
+	container.append($("<button id='btn0'>0</button>"));
 	container.append($("<button id='btn1'>1</button>"));
 	container.append($("<button id='btn2'>2</button>"));
 	container.append($("<button id='btnperiod'>.</button>"));
@@ -50,6 +51,13 @@ describe('Calculator view', function() {
     it('clears the display when clear button is pressed', function() {
 	container.find('#btn2').click().click().click();
 	container.find('#btnclear').click();
+
+	var displayText = container.find('.display').val();
+	expect(displayText).toBe('0');
+    });
+
+    it('handles multiple zeros', function() {
+	container.find('#btn0').click().click().click();
 
 	var displayText = container.find('.display').val();
 	expect(displayText).toBe('0');
