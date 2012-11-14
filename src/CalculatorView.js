@@ -12,7 +12,11 @@ CalculatorView.prototype.init = function(c) {
 	    newValue = oldValue + buttonText;
 	}
 	while (newValue.length > 1 && newValue.indexOf('0') == 0) {
-	    newValue = newValue.substring(1);
+	    if (newValue.length > 2 || buttonText !== '.') {
+		newValue = newValue.substring(1);
+	    } else {
+		break;
+	    }
 	}
 	display.val(newValue);
     });

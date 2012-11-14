@@ -62,4 +62,12 @@ describe('Calculator view', function() {
 	var displayText = container.find('.display').val();
 	expect(displayText).toBe('0');
     });
+
+    it('handles zeros plus period', function() {
+	container.find('#btn0').click().click().click();
+	container.find('#btnperiod').click().click().click();
+
+	var displayText = container.find('.display').val();
+	expect(displayText).toBe('0.');
+    });
 });
