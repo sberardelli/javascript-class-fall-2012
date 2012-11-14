@@ -9,6 +9,7 @@ describe('Calculator view', function() {
 	container.append($("<button id='btn1'>1</button>"));
 	container.append($("<button id='btn2'>2</button>"));
 	container.append($("<button id='btnperiod'>.</button>"));
+	container.append($("<button id='btnclear' class='clear'>C</button>"));
 
 	var calculatorView = new CalculatorView();
 	calculatorView.init('.calculator');
@@ -44,5 +45,13 @@ describe('Calculator view', function() {
 	container.find('#btnperiod').click();
 	var displayText = container.find('.display').val();
 	expect(displayText).toBe('2.1');
+    });
+
+    it('clears the display when clear button is pressed', function() {
+	container.find('#btn2').click().click().click();
+	container.find('#btnclear').click();
+
+	var displayText = container.find('.display').val();
+	expect(displayText).toBe('0');
     });
 });

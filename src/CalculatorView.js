@@ -13,6 +13,9 @@ CalculatorView.prototype.init = function(c) {
 	    display.val(oldValue + buttonText);
 	}
     });
+    wrapper.find('button.clear').click(function(ev) {
+	display.val('0');
+    });
 };
 
 window.CalculatorView = CalculatorView;
