@@ -1,5 +1,5 @@
 describe('Calculator view', function () {
-    var container, calculatorView;
+    var container, calculatorView, calculator;
     beforeEach(function () {
         container = $('<div/>');
         container.addClass('calculator');
@@ -16,7 +16,9 @@ describe('Calculator view', function () {
         container.append($("<button id='btnperiod' class='verbatim'>.</button>"));
         container.append($("<button id='btnclear' class='clear'>C</button>"));
 
-        var calculatorView = new CalculatorView();
+        calculator = jasmine.createSpyObj('description goes here', ['add', 'subtract']);
+
+        var calculatorView = new CalculatorView(calculator);
         calculatorView.init('.calculator');
     });
 
@@ -76,6 +78,7 @@ describe('Calculator view', function () {
     });
 
     it('can add one and two', function () {
+        calculator.add.andReturn("3");
         container.find('#btn1').click();
         container.find('#btnplus').click();
         container.find('#btn2').click();
@@ -85,7 +88,8 @@ describe('Calculator view', function () {
         expect(displayText).toBe('3');
     });
 
-    it('can add one and two', function () {
+    it('can add one and zero', function () {
+        calculator.add.andReturn("1");
         container.find('#btn1').click();
         container.find('#btnplus').click();
         container.find('#btn0').click();
@@ -93,6 +97,7 @@ describe('Calculator view', function () {
 
         var displayText = container.find('.display').val();
         expect(displayText).toBe('1');
+        expect(calculator.add).toHaveBeenCalledWith(1, 0);
     });
 
     it('clears display when pressing add', function () {
@@ -103,7 +108,8 @@ describe('Calculator view', function () {
         expect(displayText).toBe('');
     });
 
-    it('clears display when pressing add', function () {
+    it('can subtract three and two', function () {
+        calculator.subtract.andReturn("1");
         container.find('#btn3').click();
         container.find('#btnminus').click();
         container.find('#btn2').click();

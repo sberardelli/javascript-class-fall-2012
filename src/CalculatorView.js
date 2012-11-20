@@ -1,4 +1,5 @@
-var CalculatorView = function () {
+var CalculatorView = function (calculator) {
+    this.calculator = calculator;
 };
 
 var storage, operator;
@@ -22,19 +23,22 @@ CalculatorView.prototype.init = function (c) {
         }
         display.val(newValue);
     });
+
     wrapper.find('button.clear').click(function (ev) {
         display.val('0');
     });
 
-    wrapper.find('button.equal').click(function (ev) {
-        var newValue = eval(storage + operator + display.val());
+    wrapper.find('button.equal').click(jQuery.proxy(function (ev) {
+        debugger;
+        var newValue = this.calculator[operator](Number(storage), Number(display.val()));
         display.val(newValue);
-    });
-    wrapper.find('button.operator').click(function (ev) {
+    }, this));
+
+    wrapper.find('button.operator').click(jQuery.proxy(function (ev) {
         storage = display.val();
-        operator = $(ev.currentTarget).text();
+        operator = $(ev.currentTarget).attr('data-operator');
         display.val('');
-    });
+    }, this));
 };
 
 window.CalculatorView = CalculatorView;

@@ -6,6 +6,7 @@
 
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <script type="text/javascript" src="lib/jquery.js"></script>
+  <script type="text/javascript" src="src/Calculator.js"></script>
   <script type="text/javascript" src="src/CalculatorView.js"></script>
 </head>
 <body>
@@ -28,12 +29,12 @@
     <br />
     <button class="clear">C</button>
     <button class="equal">=</button>
-      <button class="operator">+</button>
-      <button class="operator">-</button>
+      <button class="operator" data-operator="add">+</button>
+      <button class="operator" data-operator="subtract">-</button>
   </div>
   <script type="text/javascript">
     $(function() {
-    var view = new CalculatorView();
+    var view = new CalculatorView(new Calculator());
     view.init($('.calculator'));
     });
   </script>
