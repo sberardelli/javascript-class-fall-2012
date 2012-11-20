@@ -1,6 +1,8 @@
 var CalculatorView = function () {
 };
 
+var storage, operator;
+
 CalculatorView.prototype.init = function (c) {
     var wrapper = $(c);
     var display = wrapper.find('.display');
@@ -23,8 +25,15 @@ CalculatorView.prototype.init = function (c) {
     wrapper.find('button.clear').click(function (ev) {
         display.val('0');
     });
+
     wrapper.find('button.equal').click(function (ev) {
-        display.val('3');
+        var newValue = eval(storage + operator + display.val());
+        display.val(newValue);
+    });
+    wrapper.find('button.operator').click(function (ev) {
+        storage = display.val();
+        operator = $(ev.currentTarget).text();
+        display.val('');
     });
 };
 

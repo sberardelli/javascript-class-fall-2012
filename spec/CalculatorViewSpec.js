@@ -9,7 +9,9 @@ describe('Calculator view', function () {
         container.append($("<button id='btn0' class='verbatim'>0</button>"));
         container.append($("<button id='btn1' class='verbatim'>1</button>"));
         container.append($("<button id='btn2' class='verbatim'>2</button>"));
+        container.append($("<button id='btn3' class='verbatim'>3</button>"));
         container.append($("<button id='btnplus' class='operator' data-operator='add'>+</button>"));
+        container.append($("<button id='btnminus' class='operator' data-operator='subtract'>-</button>"));
         container.append($("<button id='btnequal' class='equal'>=</button>"));
         container.append($("<button id='btnperiod' class='verbatim'>.</button>"));
         container.append($("<button id='btnclear' class='clear'>C</button>"));
@@ -81,5 +83,33 @@ describe('Calculator view', function () {
 
         var displayText = container.find('.display').val();
         expect(displayText).toBe('3');
+    });
+
+    it('can add one and two', function () {
+        container.find('#btn1').click();
+        container.find('#btnplus').click();
+        container.find('#btn0').click();
+        container.find('#btnequal').click();
+
+        var displayText = container.find('.display').val();
+        expect(displayText).toBe('1');
+    });
+
+    it('clears display when pressing add', function () {
+        container.find('#btn1').click();
+        container.find('#btnplus').click();
+
+        var displayText = container.find('.display').val();
+        expect(displayText).toBe('');
+    });
+
+    it('clears display when pressing add', function () {
+        container.find('#btn3').click();
+        container.find('#btnminus').click();
+        container.find('#btn2').click();
+        container.find('#btnequal').click();
+
+        var displayText = container.find('.display').val();
+        expect(displayText).toBe('1');
     });
 });
