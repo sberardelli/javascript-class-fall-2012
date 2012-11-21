@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>awesome string calculator</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <script type="text/javascript" src="lib/jquery.js"></script>
+  <script type="text/javascript" src="src/StringCalculatorView.js"></script>
+</head>
+<body>
+  <div class="stringCalculator">
+    <input type="text" class="display" /></br>
+    <button class="clear">C</button>
+    <button class="add">+</button>
+  </div>
+  <script type="text/javascript">
+    $(function() {
+    var view = new StringCalculatorView();
+    view.init($('.stringCalculator'));
+    });
+  </script>
+</body>
+</html>
